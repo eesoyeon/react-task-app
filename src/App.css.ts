@@ -14,7 +14,7 @@ export const vars = createGlobalTheme(':root', {
         darkText: 'rgb(24, 42, 77)',
         secondaryDarkText: 'rgb(94, 108, 132)',
         secondaryDartTextHover: 'rgb(218, 219, 226)',
-        selectedTab: 'rgb(137, 176, 174)',
+        selectedTab: 'rgb(100, 10, 10)',
         updateButton: 'rgb(237, 180, 88)',
         deleteButton: 'rgb(237, 51, 88)',
     },
@@ -25,7 +25,7 @@ export const vars = createGlobalTheme(':root', {
         T4: '14px',
         P1: '12px',
     },
-    spacting: {
+    spacing: {
         small: '5px',
         medium: '10px',
         big1: '20px',
@@ -59,7 +59,7 @@ export const board = style({
 
 export const buttons = style({
     marginTop: 'auto',
-    paddingLeft: vars.spacting.big2,
+    paddingLeft: vars.spacing.big2,
 });
 
 // vars.color.main

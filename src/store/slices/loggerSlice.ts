@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ILogItem } from '../../types';
 
 // 타입 앨리어스
@@ -14,8 +14,13 @@ const initialState: loggerState = {
 const loggerSlice = createSlice({
     name: 'logger',
     initialState,
-    reducers: {}, // 액션 생성 함수
+    reducers: {
+        addLogger: (state, { payload }: PayloadAction<ILogItem>) => {
+            state.logArray.push(payload);
+        },
+    }, // 액션 생성 함수
 });
 
+export const { addLogger } = loggerSlice.actions;
 // modalSlice 내보내기
 export const loggerReducer = loggerSlice.reducer;

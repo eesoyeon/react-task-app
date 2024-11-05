@@ -1,5 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ITask } from '../../types';
+
+type TSetModalDataAction = {
+    boardId: string;
+    listId: string;
+    task: ITask;
+};
 
 // 타입 앨리어스
 type TModalState = {
@@ -23,8 +29,18 @@ const initialState: TModalState = {
 const modalSlice = createSlice({
     name: 'modal',
     initialState,
-    reducers: {}, // 액션 생성 함수
+    reducers: {
+        setModalData: (
+            state,
+            { payload }: PayloadAction<TSetModalDataAction>
+        ) => {
+            state.boardId = payload.boardId;
+            state.listId = payload.listId;
+            state.task = payload.task;
+        },
+    }, // 액션 생성 함수
 });
 
+export const { setModalData } = modalSlice.actions;
 // modalSlice 내보내기
 export const modalReducer = modalSlice.reducer;
