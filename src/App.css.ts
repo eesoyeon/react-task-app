@@ -4,9 +4,9 @@ import { createGlobalTheme, style } from '@vanilla-extract/css';
 export const vars = createGlobalTheme(':root', {
     color: {
         main: '##ffa726',
-        mainDarker: '#f57c00',
-        mainFaded: '#ffb74d',
-        mainFadedBright: '#ffb74ad6',
+        mainDarker: '#222831',
+        mainFaded: '#30475E',
+        mainFadedBright: '#DDDDDD',
         list: 'rgb(235, 236, 240)',
         task: 'rgb(255, 255, 255)',
         taskHover: 'rgb(245, 245, 245)',
@@ -14,7 +14,7 @@ export const vars = createGlobalTheme(':root', {
         darkText: 'rgb(24, 42, 77)',
         secondaryDarkText: 'rgb(94, 108, 132)',
         secondaryDartTextHover: 'rgb(218, 219, 226)',
-        selectedTab: 'rgb(100, 10, 10)',
+        selectedTab: '#E7F6F2',
         updateButton: 'rgb(237, 180, 88)',
         deleteButton: 'rgb(237, 51, 88)',
     },
@@ -62,4 +62,39 @@ export const buttons = style({
     paddingLeft: vars.spacing.big2,
 });
 
-// vars.color.main
+export const deleteBoardButton = style({
+    border: 'none',
+    borderRadius: 5,
+    width: 'max-content',
+    minWidth: 150,
+    marginTop: 'auto',
+    marginLeft: 'auto',
+    marginBottom: '30px',
+    fontSize: vars.fontSizing.T4,
+    padding: vars.spacing.big2,
+    backgroundColor: '#EEE4B1',
+    cursor: 'pointer',
+    opacity: 0.8,
+    ':hover': {
+        opacity: 0.8,
+    },
+});
+
+export const loggerButton = style({
+    border: 'none',
+    borderRadius: 5,
+    width: 'max-content',
+    minWidth: 150,
+    marginTop: 'auto',
+    marginLeft: '15px',
+    marginRight: '30px',
+    marginBottom: '30px',
+    fontSize: vars.fontSizing.T4,
+    padding: vars.spacing.big2,
+    backgroundColor: '#EEE4B1',
+    cursor: 'pointer',
+    opacity: 0.8,
+    ':hover': {
+        opacity: 0.8,
+    },
+});
