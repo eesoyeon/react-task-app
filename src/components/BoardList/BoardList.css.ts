@@ -43,7 +43,7 @@ export const boardItem = style({
 });
 
 export const boardItemActive = style({
-    color: vars.color.brightText,
+    // color: vars.color.brightText,
     fontSize: vars.fontSizing.T3,
     color: 'black',
     backgroundColor: vars.color.selectedTab,

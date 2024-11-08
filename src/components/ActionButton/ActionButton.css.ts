@@ -30,6 +30,7 @@ export const listButton = style({
     paddingLeft: vars.spacing.big2,
     cursor: 'pointer',
     ':hover': {
-        backgroundColor: vars.color.mainFadedBright,
+        color: 'black',
+        backgroundColor: vars.color.selectedTab,
     },
 });
