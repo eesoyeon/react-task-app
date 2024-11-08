@@ -1,4 +1,4 @@
-import React, { ChangeEvent, FC, useRef, useState } from 'react';
+import React, { ChangeEvent, FC, useState } from 'react';
 import { FiCheck } from 'react-icons/fi';
 import { icon, input, sideForm } from './SideForm.css.ts';
 import { useTypedDispatch } from '../../../hooks/redux.ts';
@@ -50,8 +50,8 @@ const SideForm: FC<TSideFormProps> = ({ inputRef, setIsFormOpen }) => {
         <div className={sideForm}>
             <input
                 className={input}
-                autoFocus
-                // ref={inputRef}
+                // autoFocus
+                ref={inputRef}
                 type="text"
                 placeholder="새로운 게시판 등록하기"
                 value={inputText}
