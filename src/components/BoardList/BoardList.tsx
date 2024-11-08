@@ -1,7 +1,7 @@
 import React, { FC, useRef, useState } from 'react';
-import { useTypedSelector } from '../../hooks/redux';
+import { useTypedDispatch, useTypedSelector } from '../../hooks/redux';
 import SideForm from './SideForm/SideForm';
-import { FiPlusCircle } from 'react-icons/fi';
+import { FiLogIn, FiPlusCircle } from 'react-icons/fi';
 import {
     addButton,
     addSection,
@@ -11,6 +11,16 @@ import {
     title,
 } from './BoardList.css.ts';
 import clsx from 'clsx';
+import { GoSignOut } from 'react-icons/go';
+import {
+    getAuth,
+    GoogleAuthProvider,
+    signInWithPopup,
+    signOut,
+} from 'firebase/auth';
+import { app } from '../../firebase.ts';
+import { removeUser, setUser } from '../../store/slices/userSlice.ts';
+import { useAuth } from '../../hooks/useAuth.ts';
 
 type TBoardListProps = {
     activeBoardId: string;
@@ -21,15 +31,47 @@ const BoardList: FC<TBoardListProps> = ({
     activeBoardId,
     setActiveBoardId,
 }) => {
+    const dispatch = useTypedDispatch();
     const { boardArray } = useTypedSelector((state) => state.boards);
     const [isFormOpen, setIsFormOpen] = useState(false);
     const inputRef = useRef<HTMLInputElement>(null);
+
+    const auth = getAuth(app);
+    const provider = new GoogleAuthProvider();
+
+    const { isAuth } = useAuth();
 
     const handleClick = () => {
         setIsFormOpen(!isFormOpen);
         setTimeout(() => {
             inputRef.current?.focus();
         }, 0);
+    };
+
+    const handleLogin = () => {
+        signInWithPopup(auth, provider)
+            .then((userCredential) => {
+                // console.log(userCredential); // redux에 유저 데이터 넣기
+                dispatch(
+                    setUser({
+                        email: userCredential.user.email,
+                        id: userCredential.user.uid,
+                    })
+                );
+            })
+            .catch((error) => {
+                console.error(error);
+            });
+    };
+
+    const handleSignout = () => {
+        signOut(auth)
+            .then(() => {
+                dispatch(removeUser());
+            })
+            .catch((error) => {
+                console.error(error);
+            });
     };
 
     return (
@@ -66,6 +108,11 @@ const BoardList: FC<TBoardListProps> = ({
                     />
                 ) : (
                     <FiPlusCircle className={addButton} onClick={handleClick} />
+                )}
+                {isAuth ? (
+                    <GoSignOut className={addButton} onClick={handleSignout} />
+                ) : (
+                    <FiLogIn className={addButton} onClick={handleLogin} />
                 )}
             </div>
         </div>
